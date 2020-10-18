@@ -1,3 +1,5 @@
+<?php
+include './conn.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,17 +16,32 @@
   <div class="grid-container">
     <div class="profile">
       <div class="profile--content">
-        <img src="./assets/images/logo.png"/>
+        <img src="./assets/images/logo.png" />
       </div>
     </div>
     <div class="slider">
       <div class="slider--content">
-        <img src="./assets/images/hd1080.png"/>
+        <ul id="slider">
+          <?php $dataslideutama = mysqli_query($con, "SELECT * FROM `slider`") or die(mysqli_error($con));
+          $i = 0;
+          while ($slide_utama = mysqli_fetch_array($dataslideutama)) {
+            $i += 1; ?>
+            <li class="panel<?php $i; ?>">
+              <video autoplay muted loop style=" object-fit: fill;height:50%;">
+                <source src="./konfigurasi/gambar/slide-utama/<?php echo $slide_utama[2]; ?>" type="video/mp4">
+              </video>
+            </li>
+          <?php } ?>
+        </ul>
       </div>
     </div>
     <div class="running">
       <div class="running--content">
-        <marquee>text running</marquee>
+        <?php
+					$bodytext = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `beritagabung`ORDER BY ID DESC LIMIT 1"));
+					$jeda = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `konfigurasi`"));
+					?>
+						<marquee style="font-size:45px;"><?php echo $bodytext[1]; ?></marquee>
       </div>
     </div>
     <div class="menu">

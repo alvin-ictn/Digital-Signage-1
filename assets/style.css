@@ -1,7 +1,7 @@
 *, ::after, ::before {
   margin: 0;
   padding: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .grid-container {
@@ -53,14 +53,39 @@ div[class$="content"] {
   height: inherit;
 }
 
+.running--content {
+  display:flex;
+  align-items: center;
+}
+
 .menu--content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  font-size: 1.5rem
+  font-size: 1.2rem
 }
 
 .menu--content > * {
   background: grey;
+}
+
+.menu--item {
+  min-height:90vh;
+  width: 100%; 
+  max-width: 100%;
+}
+
+.card.company-profile {
+  text-align: center;
+}
+
+.card.company-profile > img{
+  width: 100%;
+  height: auto;
+}
+
+.menu-logo img {
+  width: 30%;
+  height: inherit;
 }
